@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Data Guru</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <header>Geo Attendance</header>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+            <li><a href="DataSiswa.html"><i class="fas fa-user"></i>Data Siswa</a></li>
+            <li><a href="DataGuru.html"><i class="fas fa-user"></i>Data Guru</a></li>
+            <li><a href="absen.html"><i class="far fa-envelope"></i>Absen</a></li>
+            <li><a href="#"><i class="fas fa-calendar-week"></i>Rekap Absensi</a></li>
+            <li><a href="index.html"><i class="fa-window-close"></i>Keluar</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="top-bar">
+            <div class="search">
+                <input type="text" name="search" placeholder="Search">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="assets/avatar.svg">
+            </div>
+        </div>
+        <h1 class="title-ds">Data Guru</h1>
+        <a href="tambahGuru.html">
+        <input type="submit" class="btn-add" value="Add Data" >
+        </a>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                   <th>NIP</th>
+                    <th>NAMA</th>
+                    <th>TEMPAT</th>
+                    <th>TANGGAL</th>
+                    <th>ALAMAT</th>
+                    <th>JK</th>
+                    <th>AGAMA</th>
+                    <th>EMAIL</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    </div>
+   <script>
+        fetch('http://127.0.0.1:5010/get_data_guru')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+
+                data.forEach(user => {
+                    const markup = `
+                                                <tr>
+                                                    <th>${user.nip}</th>
+                                                    <td>${user.nama}</td>
+                                                    <td>${user.tempat_lahir}</td>
+                                                    <td>${user.tanggal_lahir}</td>
+                                                    <td>${user.alamat}</td>
+                                                    <td>${user.jk}</td>
+                                                    <td>${user.agama}</td>
+                                                    <td>${user.email}</td>
+                                                    <td>
+                                                        <a href="ubahGuru.html" class="btn-ubah">Ubah</a>
+                                                        <form style="display: inline;" id="hapus">
+                                                            <button type="submit" class="btn-hapus">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>`;
+
+                    document.querySelector('tbody').insertAdjacentHTML('beforeend', markup)
+                });
+            })
+            .catch(error => console.log(error));
+
+    </script>
+</body>
+</html>
