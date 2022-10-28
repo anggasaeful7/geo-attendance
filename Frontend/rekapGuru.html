@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Dashboard</title>
+    <title>Rekap Guru</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -35,8 +35,22 @@
                 <img src="assets/avatar.svg">
             </div>
         </div>
-        <h1 class="title-ds">Data absen hari ini</h1>
-        <table class="styled-table">
+        <h1 class="title-ds">Rekap Absensi Guru</h1>
+        <form method="" action="">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="form-group">
+                        <label class="text-filter">Filter Tanggal</label>
+                        <div class="input-group">
+                            <input type="date" name="tgl_awal" value="" class="tgl-awal" placeholder="Tanggal Awal">
+                            <span class="input-group-addon">s/d</span>
+                            <input type="date" name="tgl_akhir" value="" class="tgl-akhir" placeholder="Tanggal Akhir">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" name="filter" value="true" class="btn-tampil">TAMPILKAN</button>
+        <table class="styled-table" id="table-data">
             <thead>
                 <tr>
                     <th>No</th>
@@ -91,6 +105,7 @@
                 </tr>
             </tbody>
         </table>
+        <button type="submit" name="filter" value="true" class="btn-cetak" onclick="window.print()">CETAK</button>
     </div>
     </div>
 </body>

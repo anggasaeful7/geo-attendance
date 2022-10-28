@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Absen Guru</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="js/location.js"></script>
+    
+</head>
+
+<body>
+    <div class="sidebar">
+        <header>Geo Attendance</header>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+            <li><a href="DataSiswa.html"><i class="fas fa-user"></i>Data Siswa</a></li>
+            <li><a href="DataGuru.html"><i class="fas fa-user"></i>Data Guru</a></li>
+            <li><a href="absenSiswa.html"><i class="far fa-envelope"></i>Absen Siswa</a></li>
+            <li><a href="absenGuru.html"><i class="far fa-envelope"></i>Absen Guru</a></li>
+            <li><a href="rekapSiswa.html"><i class="fas fa-calendar-week"></i>Rekap Siswa</a></li>
+            <li><a href="rekapGuru.html"><i class="fas fa-calendar-week"></i>Rekap Guru</a></li>s
+            <li><a href="index.html"><i class="fa-window-close"></i>Keluar</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="top-bar">
+            <div class="search">
+                <input type="text" name="search" placeholder="Search">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="assets/avatar.svg">
+            </div>
+        </div>
+        <h1 class="title-ds">Absen Guru</h1>
+        <div class="date-time">
+            <p id="date_time"></p>
+        </div>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>NIP</th>
+                    <th>Nama</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Masuk</th>
+                    <th>Keluar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>101023</td>
+                    <td>Abdul</td>
+                    <td id="lat"></td>
+                    <td id="long"></td>
+                    <td><button type="submit" class="absen-masuk" onclick="Swal.fire('Anda berhasil absen')">Absen</button></td>
+                    <td><button type="submit" class="absen-keluar" onclick="Swal.fire('Anda berhasil absen')">Absen</button></td>
+                </tr>
+    </div>
+</body>
+    <script type="text/javascript" src="js/datetime.js"></script>
+    <script type="text/javascript">window.onload = date_time('date_time');</script>
+</html>

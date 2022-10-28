@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <title>Login</title>
 </head>
+
 <body>
     <img class="wave" src="assets/wave.svg">
     <div class="container">
@@ -36,10 +38,17 @@
                         <input class="input" type="password">
                     </div>
                 </div>
-                <input type="submit" class="btn" value="Login">
+                <input type="submit" class="btn" value="Login" onclick="Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })">
             </form>
         </div>
     </div>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
+
 </html>
