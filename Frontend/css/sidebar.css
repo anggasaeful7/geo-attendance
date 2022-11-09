@@ -35,13 +35,14 @@ body{
     display: block; 
     height: 100%;
     width: 100%;
-    line-height: 65px;
+    line-height: 55px;
     font-size: 18px;
     padding-left: 40px;
     color: white;
     text-decoration: none;
     box-sizing: border-box;
     transition: .4s;
+    font-family: 'Poppins-Black';
 }
 
 ul li:hover a{
@@ -371,3 +372,10 @@ img{
     background-size: 200%;
     transition: .5%; 
 }
+
+.title-ab{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 35px;
+}
+
