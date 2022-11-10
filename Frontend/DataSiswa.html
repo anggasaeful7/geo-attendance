@@ -7,6 +7,8 @@
     <title>Data Siswa</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
@@ -37,8 +39,7 @@
             </div>
         </div>
         <h1 class="title-ds">Data Siswa</h1>
-        <a href="tambahSiswa.html">
-        <input type="submit" class="btn-add" value="Add Data" >
+        <button type="button" class="btn-add" onclick="showUserCreateBoxSiswa()">Add Siswa</button>
         </a>
         <table class="styled-table">
             <thead>
@@ -54,13 +55,19 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
-                
+            <tbody id="tableSiswa">
+                <tr>
+                    <th scope="row" colspan="5">Loading...</th>
+                </tr>
             </tbody>
         </table>
     </div>
     </div>
-   <script>
+    <script src="js/siswa.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script
+   <!-- <script>
         fetch('http://127.0.0.1:5011/get_data_siswa')
             .then(res => {
                 return res.json();
@@ -91,6 +98,6 @@
             })
             .catch(error => console.log(error));
 
-    </script>
+    </script> -->
 </body>
 </html>
