@@ -1,10 +1,17 @@
-from flask import Flask, request, jsonify, make_response
 import pymysql
+from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
-
+from flask_jwt_extended import create_access_token, get_jwt, jwt_required, JWTManager
+import datetime
 # Membuat server flask
 app = Flask(__name__)
 CORS(app)
+
+app.config['SECRET_KEY'] = "INI_SECRET_KEY"
+app.config['JWT_HEADER_TYPE'] = "jwt"
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(
+    days=1)  # 1 hari token JWT expired
+jwt = JWTManager(app)
 
 mydb = pymysql.connect(
     host="localhost",
@@ -18,6 +25,111 @@ mydb = pymysql.connect(
 @app.route('/index')
 def index():
     return "<h1>Backend Capstone</h1>"
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+
+    username = data["username"]
+    password = data["password"]
+
+    username = username.lower()
+    password_enc = password
+    # hashlib.md5(password.encode(
+    #     'utf-8')).hexdigest()  # Convert password to md5
+
+    # Cek kredensial didalam database
+    query = " SELECT id_admin, nama, password FROM tbl_admin WHERE username = %s "
+    values = (username, )
+
+    mycursor = mydb.cursor()
+    mycursor.execute(query, values)
+    data_user = mycursor.fetchall()
+
+    if len(data_user) == 0:
+        return make_response(jsonify(deskripsi="Username tidak ditemukan"), 401)
+
+    data_user = data_user[0]
+
+    db_id_admin = data_user[0]
+    db_nama = data_user[1]
+    db_password = data_user[2]
+
+    if password_enc != db_password:
+        return make_response(jsonify(deskripsi="Password salah"), 401)
+
+    jwt_payload = {
+        "id_admin": db_id_admin,
+        "nama": db_nama,
+        "status": "login"
+    }
+
+    access_token = create_access_token(username, additional_claims=jwt_payload)
+
+    return jsonify(access_token=access_token)
+
+
+@app.route("/login_guru", methods=["POST"])
+def loginguru():
+    data = request.json
+
+    username = data["username"]
+    password = data["password"]
+
+    username = username.lower()
+    password_enc = password
+    # hashlib.md5(password.encode(
+    #     'utf-8')).hexdigest()  # Convert password to md5
+
+    # Cek kredensial didalam database
+    query = " SELECT nip, nama, tempat_lahir,tanggal_lahir, alamat, jk, agama, email, username, password FROM tbl_guru WHERE username = %s "
+    values = (username, )
+
+    mycursor = mydb.cursor()
+    mycursor.execute(query, values)
+    data_user = mycursor.fetchall()
+
+    if len(data_user) == 0:
+        return make_response(jsonify(deskripsi="Username tidak ditemukan"), 401)
+
+    data_user = data_user[0]
+
+    db_nip = data_user[0]
+    db_nama = data_user[1]
+    db_tempat_lahir = data_user[2]
+    db_tanggal_lahir = data_user[3]
+    db_alamat = data_user[4]
+    db_jk = data_user[5]
+    db_agama = data_user[6]
+    db_email = data_user[7]
+    db_username = data_user[8]
+    db_password = data_user[9]
+
+    if password_enc != db_password:
+        return make_response(jsonify(deskripsi="Password salah"), 401)
+
+    jwt_payload = {
+        "id_admin": db_nip,
+        "nama": db_nama,
+        "status": "login"
+    }
+
+    result = {
+        "nip": db_nip,
+        "nama": db_nama,
+        "tempat_lahir": db_tempat_lahir,
+        "tanggal_lahir": db_tanggal_lahir,
+        "alamat": db_alamat,
+        "jk": db_jk,
+        "agama": db_agama,
+        "email": db_email,
+        "username": db_username
+    }
+
+    access_token = create_access_token(username, additional_claims=jwt_payload)
+
+    return make_response(jsonify(access_token=access_token), result)
 
 
 @app.route('/get_data_guru', methods=['GET'])
@@ -54,9 +166,10 @@ def insert_data_guru():
     try:
         data = request.json
 
-        query = "INSERT INTO tbl_guru(nip, nama, tempat_lahir,tanggal_lahir, alamat, jk, agama, kelas, email, username, password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        query = "INSERT INTO tbl_guru(nip, nama, tempat_lahir,tanggal_lahir, alamat, jk, agama, email, username, password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         values = (data["nip"], data["nama"], data["tempat"],
-                  data["tanggal"], data["alamat"], data["jk"], data["agama"], data["kelas"], data["email"], data["username"], data["password"])
+                  data["tanggal"], data["alamat"], data["jk"], data["agama"], data["email"], data["username"], data["password"])
+
         mycursor = mydb.cursor()
         mycursor.execute(query, values)
         mydb.commit()
@@ -66,6 +179,7 @@ def insert_data_guru():
         print("Error: " + str(e))
 
     return jsonify(hasil)
+
 
 @app.route('/update_data_guru/<nip>', methods=['PUT'])
 def update_data_guru(nip):
@@ -99,9 +213,6 @@ def update_data_guru(nip):
         if "agama" in data:
             query += ", agama = %s"
             values += (data["agama"], )
-        if "kelas" in data:
-            query += ", kelas = %s"
-            values += (data["kelas"], )
         if "email" in data:
             query += ", email = %s"
             values += (data["email"], )

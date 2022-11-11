@@ -56,15 +56,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>101023</td>
-                    <td>Abdul</td>
+                    <td id="nis">101023</td>
+                    <td id="nama">Abdul</td>
                     <td id="lat"></td>
                     <td id="long"></td>
-                    <td><button type="submit" class="absen-masuk" onclick="Swal.fire('Anda berhasil absen')">Absen</button></td>
-                    <td><button type="submit" class="absen-keluar" onclick="Swal.fire('Anda berhasil absen')">Absen</button></td>
+                    <td><button type="submit" class="absen-masuk" onclick="absenMasukGuru()"">Absen</button></td>
+                    <td><button type="submit" class="absen-keluar" onclick="absenMasukGuru()"">Absen</button></td>
                 </tr>
     </div>
 </body>
+    <script src="js/absensiswa.js"></script>
+    <script src="js/cekSiswa.js"></script>
     <script type="text/javascript" src="js/datetime.js"></script>
     <script type="text/javascript">window.onload = date_time('date_time');</script>
 </html>
