@@ -25,12 +25,12 @@ def get_data_guru():
     query = "SELECT * FROM tbl_guru WHERE 1=1"
     values = ()
 
-    nis = request.args.get("nip")
+    nip = request.args.get("nip")
     nama = request.args.get("nama")
 
-    if nis:
+    if nip:
         query += " AND nip=%s "
-        values += (nis,)
+        values += (nip,)
     if nama:
         query += " AND nama LIKE %s "
         values += ("%"+nama+"%", )
@@ -54,34 +54,33 @@ def insert_data_guru():
     try:
         data = request.json
 
-        query = "INSERT INTO tbl_guru(nip, nama, tempat_lahir,tanggal_lahir, alamat, jk, agama, email, username, password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        query = "INSERT INTO tbl_guru(nip, nama, tempat_lahir,tanggal_lahir, alamat, jk, agama, kelas, email, username, password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         values = (data["nip"], data["nama"], data["tempat"],
-                  data["tanggal"], data["alamat"], data["jk"], data["agama"], data["email"], data["username"], data["password"])
+                  data["tanggal"], data["alamat"], data["jk"], data["agama"], data["kelas"], data["email"], data["username"], data["password"])
         mycursor = mydb.cursor()
         mycursor.execute(query, values)
         mydb.commit()
-        hasil = {"status": "berhasil insert data guru"}
+        hasil = {"status": "berhasil insert data siswa"}
 
     except Exception as e:
         print("Error: " + str(e))
 
     return jsonify(hasil)
 
-
-@app.route('/update_data_guru/<nis>', methods=['PUT'])
-def update_data_guru(nis):
+@app.route('/update_data_guru/<nip>', methods=['PUT'])
+def update_data_guru(nip):
     hasil = {"status": "gagal update data guru"}
 
     try:
         data = request.json
-        # nis_awal = data["nis_awal"]
+        # nip_awal = data["nip_awal"]
 
-        query = "UPDATE tbl_guru SET nis = %s "
-        values = (nis, )
+        query = "UPDATE tbl_guru SET nip = %s "
+        values = (nip, )
 
-        if "nis" in data:
-            query += ", nis = %s"
-            values += (data["nis"], )
+        if "nip" in data:
+            query += ", nip = %s"
+            values += (data["nip"], )
         if "nama" in data:
             query += ", nama = %s"
             values += (data["nama"], )
@@ -113,8 +112,8 @@ def update_data_guru(nis):
             query += ", password = %s"
             values += (data["password"], )
 
-        query += " WHERE nis = %s"
-        values += (nis, )
+        query += " WHERE nip = %s"
+        values += (nip, )
 
         mycursor = mydb.cursor()
         mycursor.execute(query, values)
@@ -127,14 +126,14 @@ def update_data_guru(nis):
     return jsonify(hasil)
 
 
-@app.route('/delete_data_guru/<nis>', methods=['DELETE'])
-def delete_data_guru(nis):
+@app.route('/delete_data_guru/<nip>', methods=['DELETE'])
+def delete_data_guru(nip):
     hasil = {"status": "gagal hapus data guru"}
 
     try:
 
-        query = "DELETE FROM tbl_guru WHERE nis=%s"
-        values = (nis,)
+        query = "DELETE FROM tbl_guru WHERE nip=%s"
+        values = (nip,)
         mycursor = mydb.cursor()
         mycursor.execute(query, values)
         mydb.commit()

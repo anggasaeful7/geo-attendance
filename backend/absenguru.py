@@ -31,15 +31,17 @@ def absen_guru():
         longitude = 107.6011363
         latitude = -6.9481348
 
-        if (longitude == data["longitude"] and latitude == data["latitude"]):
-            query = "INSERT INTO tbl_absen_guru(id_absen_guru, nip, nama, role, longitude, latitude, datetime, duration) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+        if (longitude == data["long"] and latitude == data["lat"]):
+            query = "INSERT INTO tbl_absen_guru(id_absen_guru, nip, nama, latitude, longitude, tanggal, jam, kelas) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
 
-            values = (data["id_absen_guru"], data["nip"], data["nama"], data["role"],
-                      data["longitude"], data["latitude"], data["datetime"], data["duration"])
+            values = (data["id_absen_guru"], data["nip"], data["nama"],
+                      data["lat"], data["long"], data["tanggal"], data["jam"], data["kelas"])
             mycursor = mydb.cursor()
             mycursor.execute(query, values)
             mydb.commit()
             hasil = {"status": "berhasil insert data absen guru"}
+        else:
+            hasil = {"status": "Anda tidak berada di lokasi"}
 
     except Exception as e:
         print("Error: " + str(e))

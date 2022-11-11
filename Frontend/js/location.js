@@ -20,6 +20,8 @@ handlePermission(this);
             var long = data.longitude;
             document.getElementById('lat').innerHTML = lat
             document.getElementById('long').innerHTML = long
+
+            localStorage.setItem("lat", lat);
         }
 
         function showErrorLocation(error) {
