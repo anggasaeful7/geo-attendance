@@ -72,6 +72,14 @@ ul li:hover a{
     position: relative;
     width: 50px;
     height: 50px;
+    margin-top: 17px;
+}
+
+.profile-user{
+    text-decoration: none;
+    color: #6C63FF;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
 }
 
 img{
@@ -81,6 +89,7 @@ img{
     top: 0;
     left: 0;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .top-bar{
@@ -117,7 +126,7 @@ img{
 .search {
     position: absolute;
     right: 15px;
-    top: 10px;
+    top: 0px;
     cursor: pointer;
 }
 
@@ -252,6 +261,18 @@ img{
     padding: 3px;
     font-family: 'Poppins-Black';
     border-radius: 10px;
+    border: 1px solid #6C63FF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.input-data-2{
+    width:400px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 6px;
+    font-family: 'Poppins-Black';
+    border-radius: 5px;
     border: 1px solid #6C63FF;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }

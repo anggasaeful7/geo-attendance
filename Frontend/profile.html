@@ -4,14 +4,13 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Absen Guru</title>
+    <title>Profile</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="js/location.js"></script>
-    
 </head>
 
 <body>
@@ -40,37 +39,28 @@
                 <a href="profile.html" class="profile-user">Account</a>
             </div>
         </div>
-        <h1 class="title-ds">Absen Guru</h1>
-        <div class="date-time">
-            <p id="date_time"></p>
+        <h1 class="title-ds">Profile</h1>
+        <div id="admin_information">
+            <div id="admin_details">
+                <label>Nama</label>
+                <input type="text" name="name" class="input-profile" disabled>
+                <label>Tempat Lahir</label>
+                <input type="text" name="tempat" class="input-profile" disabled>
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="input-profile" disabled>
+                <label>Email</label>
+                <input type="text" name="email" class="input-profile" disabled>
+                <label>Jenis Kelamin</label>
+                <input type="text" name="jk" class="input-profile" disabled>
+                <label>Agama</label>
+                <input type="text" name="agama" class="input-profile" disabled>
+            </div>
         </div>
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Masuk</th>
-                    <th>Keluar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="nip">101023</td>
-                    <td id="nama">Abdul</td>
-                    <td id="lat"></td>
-                    <td id="long"></td>
-                    <td><button type="submit" class="absen-masuk" onclick="absenMasukGuru()">Absen</button></td>
-                    <td><button type="submit" class="absen-keluar" onclick="absenMasukGuru()"">Absen</button></td>
-                </tr>
-    </div>
+        </div>
 </body>
-    <script src="js/navakses.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="js/absenguru.js"></script>
-    <script src="js/cekGuru.js"></script>
-    <script type="text/javascript" src="js/datetime.js"></script>
-    <script type="text/javascript">window.onload = date_time('date_time');</script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script src="js/navakses.js"></script>
+
 </html>
