@@ -1,4 +1,4 @@
-export const contractAddress = "0x8BC5430f625E73b9A4F342Cc484eE94a24460393"
+export const contractAddress = "0x2bc7fe19e9e64d8f319b03ed5dcfe491e0c0be40"
 export const abi = [
     {
         inputs: [
@@ -9,38 +9,16 @@ export const abi = [
             },
             {
                 internalType: "string",
-                name: "tanggal",
+                name: "datetime",
                 type: "string",
             },
         ],
-        name: "getAbsen",
+        name: "getGuru",
         outputs: [
             {
-                components: [
-                    {
-                        internalType: "uint256",
-                        name: "nis",
-                        type: "uint256",
-                    },
-                    {
-                        internalType: "string",
-                        name: "nama",
-                        type: "string",
-                    },
-                    {
-                        internalType: "string",
-                        name: "kelas",
-                        type: "string",
-                    },
-                    {
-                        internalType: "string",
-                        name: "alamat",
-                        type: "string",
-                    },
-                ],
-                internalType: "struct SMA.Murid",
+                internalType: "string[]",
                 name: "",
-                type: "tuple",
+                type: "string[]",
             },
         ],
         stateMutability: "view",
@@ -49,9 +27,66 @@ export const abi = [
     {
         inputs: [
             {
-                internalType: "uint256",
+                internalType: "string",
+                name: "nama",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "datetime",
+                type: "string",
+            },
+        ],
+        name: "getSiswa",
+        outputs: [
+            {
+                internalType: "string[]",
+                name: "",
+                type: "string[]",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "string",
+                name: "nip",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "nama",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "longitude",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "latitude",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "datetime",
+                type: "string",
+            },
+        ],
+        name: "setGuru",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "string",
                 name: "nis",
-                type: "uint256",
+                type: "string",
             },
             {
                 internalType: "string",
@@ -65,16 +100,26 @@ export const abi = [
             },
             {
                 internalType: "string",
-                name: "alamat",
+                name: "mapel",
                 type: "string",
             },
             {
                 internalType: "string",
-                name: "tanggal",
+                name: "longitude",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "latitude",
+                type: "string",
+            },
+            {
+                internalType: "string",
+                name: "datetime",
                 type: "string",
             },
         ],
-        name: "setAbsen",
+        name: "setSiswa",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",

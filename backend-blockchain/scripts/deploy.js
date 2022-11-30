@@ -3,7 +3,7 @@ const { ethers, run, network } = require("hardhat")
 
 // async main
 async function main() {
-    const AttandanceFactory = await ethers.getContractFactory("SMA")
+    const AttandanceFactory = await ethers.getContractFactory("Attandance")
     console.log("Deploying contract...")
     const attandance = await AttandanceFactory.deploy()
     await attandance.deployed()

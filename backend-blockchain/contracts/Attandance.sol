@@ -2,25 +2,9 @@
 pragma solidity >=0.7.0 <0.9.0;
 pragma abicoder v2;
 
-contract SMA {
-    struct Murid {
-        uint nis;
-        string nama;
-        string kelas;
-        string alamat;
-    }
-
-    mapping(string => Murid) private chain;
-
-    function setAbsen(
-        uint nis,
-        string memory nama,
-        string memory kelas,
-        string memory alamat,
-        string memory tanggal
-    ) public {
-        chain[concatenate(nama, tanggal)] = Murid(nis, nama, kelas, alamat);
-    }
+contract Attandance {
+    mapping(string => string[]) private siswa;
+    mapping(string => string[]) private guru;
 
     function concatenate(
         string memory s1,
@@ -29,10 +13,53 @@ contract SMA {
         return string(abi.encodePacked(s1, s2));
     }
 
-    function getAbsen(
+    function setSiswa(
+        string memory nis,
         string memory nama,
-        string memory tanggal
-    ) public view returns (Murid memory) {
-        return chain[concatenate(nama, tanggal)];
+        string memory kelas,
+        string memory mapel,
+        string memory longitude,
+        string memory latitude,
+        string memory datetime
+    ) public {
+        siswa[concatenate(nama, datetime)] = [
+            nis,
+            nama,
+            kelas,
+            mapel,
+            longitude,
+            latitude,
+            datetime
+        ];
+    }
+
+    function getSiswa(
+        string memory nama,
+        string memory datetime
+    ) public view returns (string[] memory) {
+        return siswa[concatenate(nama, datetime)];
+    }
+
+    function setGuru(
+        string memory nip,
+        string memory nama,
+        string memory longitude,
+        string memory latitude,
+        string memory datetime
+    ) public {
+        guru[concatenate(nama, datetime)] = [
+            nip,
+            nama,
+            longitude,
+            latitude,
+            datetime
+        ];
+    }
+
+    function getGuru(
+        string memory nama,
+        string memory datetime
+    ) public view returns (string[] memory) {
+        return guru[concatenate(nama, datetime)];
     }
 }
